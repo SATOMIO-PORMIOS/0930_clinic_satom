@@ -101,4 +101,3 @@
   if (mq.addEventListener) mq.addEventListener('change', syncCarousels);
   else mq.addListener(syncCarousels);
 })();
-

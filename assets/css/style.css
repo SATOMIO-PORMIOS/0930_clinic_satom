@@ -1,4 +1,4 @@
-:root{
+﻿:root{
   --main:#2E8B7F;
   --sub:#6A9199;
   --lightgreen:#DCEDEA;
@@ -529,13 +529,19 @@ html,body{max-width:100%;overflow-x:hidden}
     margin:20px 0 0;
   }
   .carousel-dot{
-    width:12px;height:12px;
-    padding:0;border:0;border-radius:50%;
-    background:var(--sub);
-    opacity:.9;
+    display:grid;place-items:center;
+    width:44px;height:44px;
+    padding:0;border:0;
+    background:transparent;
     cursor:pointer;
   }
-  .carousel-dot.is-active{background:var(--hero);opacity:1}
+  .carousel-dot::before{
+    content:"";width:12px;height:12px;border-radius:50%;
+    background:var(--sub);opacity:.9;
+    transition:background-color .2s,transform .2s;
+  }
+  .carousel-dot.is-active::before{background:var(--hero);opacity:1;transform:scale(1.2)}
+  .carousel-dot:focus-visible{outline:2px solid var(--main);outline-offset:0;border-radius:50%}
 
   .about-grid{display:flex;flex-direction:column;gap:22px}
   .about-photo{order:2;width:100%;aspect-ratio:16/9}
@@ -630,3 +636,4 @@ body{min-width:0}
   .faq-item p{font-size:16px;line-height:1.7}
   .faq-closing{padding:0 8px}
 }
+

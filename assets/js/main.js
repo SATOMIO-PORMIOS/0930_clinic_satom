@@ -2,6 +2,17 @@
   const menuButton = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   const hero = document.querySelector('.hero');
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    const updateBackToTop = () => {
+      backToTop.classList.toggle('is-visible', window.scrollY > 400);
+    };
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
+    backToTop.addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+    });
+  }
   const sectionLinks = nav ? [...nav.querySelectorAll('a[href^="#"]')].map((link) => ({
     link,
     section: document.querySelector(link.getAttribute('href'))

@@ -2,6 +2,29 @@
   const menuButton = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   const hero = document.querySelector('.hero');
+  const sectionLinks = nav ? [...nav.querySelectorAll('a[href^="#"]')].map((link) => ({
+    link,
+    section: document.querySelector(link.getAttribute('href'))
+  })).filter((item) => item.section) : [];
+
+  if (sectionLinks.length) {
+    const updateActiveSection = () => {
+      const marker = window.innerHeight * 0.35;
+      let active = sectionLinks[0];
+      sectionLinks.forEach((item) => {
+        if (item.section.getBoundingClientRect().top <= marker) active = item;
+      });
+      sectionLinks.forEach(({ link, section }) => {
+        const selected = link === active.link;
+        link.classList.toggle('is-active', selected);
+        if (selected) link.setAttribute('aria-current', 'location');
+        else link.removeAttribute('aria-current');
+      });
+    };
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    window.addEventListener('resize', updateActiveSection);
+    updateActiveSection();
+  }
 
   if (nav && hero) {
     const updateStickyNav = () => {

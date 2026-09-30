@@ -99,6 +99,19 @@ img {
   font-weight: 700
 }
 
+.hero-hours__status {
+  display: inline-block;
+  margin-left: 14px;
+  color: #000;
+  font-size: .58em;
+  font-weight: 700;
+  vertical-align: .18em
+}
+
+.hero-hours__status.is-closed {
+  color: var(--holiday)
+}
+
 .hours-table {
   width: 100%;
   border-collapse: collapse;
@@ -140,6 +153,10 @@ img {
 .hours-table--hero thead th {
   font-weight: 700;
   background: rgba(255, 255, 255, .16)
+}
+
+.hours-table--hero .is-today {
+  background: rgba(197, 223, 147, .72)
 }
 
 .hours-table .closed {

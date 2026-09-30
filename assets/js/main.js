@@ -66,6 +66,42 @@
     });
   }
 
+  const heroHours = document.querySelector('.hours-table--hero');
+  if (heroHours) {
+    const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', weekday: 'short' }).format(new Date());
+    const weekdayIndex = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(weekday) + 1;
+    heroHours.querySelectorAll('tr').forEach((row) => {
+      row.children[weekdayIndex]?.classList.add('is-today');
+    });
+
+    const heading = document.querySelector('#hero-hours-title');
+    if (heading) {
+      let status = heading.querySelector('.hero-hours__status');
+      if (!status) {
+        status = document.createElement('span');
+        status.className = 'hero-hours__status';
+        heading.append(status);
+      }
+      const updateStatus = () => {
+        const parts = new Intl.DateTimeFormat('en-GB', {
+          timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
+        }).formatToParts(new Date());
+        const hour = Number(parts.find((part) => part.type === 'hour').value);
+        const minute = Number(parts.find((part) => part.type === 'minute').value);
+        const time = hour * 60 + minute;
+        const morningOpen = time >= 9 * 60 && time < 12 * 60;
+        const afternoonOpen = time >= 13 * 60 && time < 18 * 60;
+        const openToday = weekdayIndex !== 4 && weekdayIndex !== 7 && !(weekdayIndex === 6 && afternoonOpen);
+        const isOpen = openToday && (morningOpen || afternoonOpen);
+        status.textContent = isOpen
+          ? '\u73fe\u5728\uff1a\u8a3a\u7642\u6642\u9593\u5185\u3067\u3059'
+          : '\u73fe\u5728\uff1a\u8a3a\u7642\u6642\u9593\u5916\u3067\u3059';
+        status.classList.toggle('is-closed', !isOpen);
+      };
+      updateStatus();
+      window.setInterval(updateStatus, 60000);
+    }
+  }
   const mq = window.matchMedia('(max-width: 480px)');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
   const tracks = [

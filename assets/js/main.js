@@ -1,6 +1,16 @@
-﻿(() => {
+(() => {
   const menuButton = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
+  const hero = document.querySelector('.hero');
+
+  if (nav && hero) {
+    const updateStickyNav = () => {
+      nav.classList.toggle('is-fixed', hero.getBoundingClientRect().bottom <= 0);
+    };
+    window.addEventListener('scroll', updateStickyNav, { passive: true });
+    window.addEventListener('resize', updateStickyNav);
+    updateStickyNav();
+  }
 
   if (menuButton && nav) {
     menuButton.addEventListener('click', () => {

@@ -2,6 +2,11 @@
   const menuButton = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   const hero = document.querySelector('.hero');
+  document.querySelectorAll('a[href^="tel:"]').forEach((link) => {
+    link.addEventListener('click', (event) => {
+      if (!window.confirm('電話をかけますか？')) event.preventDefault();
+    });
+  });
   const backToTop = document.querySelector('.back-to-top');
   if (backToTop) {
     const updateBackToTop = () => {

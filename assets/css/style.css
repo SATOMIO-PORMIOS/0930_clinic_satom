@@ -182,7 +182,13 @@ img {
   color: #111;
   font-size: 18px;
   font-weight: 700;
-  line-height: 1.25
+  line-height: 1.25;
+  transition: background-color .2s ease, color .2s ease
+}
+
+.hero-reserve:hover {
+  background: var(--main);
+  color: #fff
 }
 
 .hero-reserve+.hero-reserve {
@@ -299,7 +305,16 @@ img {
 
 .back-to-top:hover {
   background: #236f65;
-  transform: translateY(-2px)
+  box-shadow: 0 6px 18px rgba(38, 59, 58, .3)
+}
+
+.back-to-top.is-visible:hover {
+  transform: translateY(-3px) scale(1.06)
+}
+
+.back-to-top:focus-visible {
+  outline: 3px solid var(--hero);
+  outline-offset: 3px
 }
 
 .nav-leaf {
@@ -378,6 +393,12 @@ img {
   color: #fff;
   font-size: 17px;
   font-weight: 600;
+  transition: background-color .2s ease, color .2s ease
+}
+
+.pill-button:hover {
+  background: #236f65;
+  color: #fff
 }
 
 /* ===== NEWS ===== */
@@ -417,7 +438,14 @@ img {
   padding: 3px 16px;
   font-size: 16px;
   font-weight: 700;
-  line-height: 1.5
+  line-height: 1.5;
+  cursor: pointer;
+  transition: background-color .2s ease, color .2s ease
+}
+
+.mini-button:hover {
+  background: var(--main);
+  color: #fff
 }
 
 /* ===== GREETING ===== */

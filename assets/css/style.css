@@ -82,6 +82,78 @@ img {
   font-size: .9em;
 }
 
+.hero__branch {
+  display: block;
+  width: 100%;
+  height: 42px;
+  margin-top: 2px;
+  overflow: visible;
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .2));
+}
+
+.hero__branch path {
+  vector-effect: non-scaling-stroke;
+  stroke-dasharray: 100;
+  stroke-dashoffset: 100;
+  animation: draw-branch .65s ease-out forwards;
+}
+
+.hero__branch .hero__branch-main {
+  stroke-width: 3.5;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+}
+
+.hero__branch .hero__branch-twig {
+  stroke-width: 2.5;
+}
+
+.hero__branch .hero__branch-twig--one { animation-delay: .5s; }
+.hero__branch .hero__branch-twig--down-one { animation-delay: .75s; }
+.hero__branch .hero__branch-twig--two { animation-delay: 1s; }
+.hero__branch .hero__branch-twig--down-two { animation-delay: 1.25s; }
+.hero__branch .hero__branch-twig--three { animation-delay: 1.45s; }
+
+.hero__branch-leaf {
+  opacity: 0;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: grow-leaf .45s ease-out forwards;
+}
+
+.hero__branch-leaf--one { animation-delay: 1.05s; }
+.hero__branch-leaf--two { animation-delay: 1.3s; }
+.hero__branch-leaf--three { animation-delay: 1.55s; }
+.hero__branch-leaf--four { animation-delay: 1.8s; }
+.hero__branch-leaf--five { animation-delay: 2s; }
+.hero__branch-leaf--tip-one { animation-delay: 2.2s; }
+.hero__branch-leaf--tip-two { animation-delay: 2.4s; }
+
+@keyframes draw-branch {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes grow-leaf {
+  from { opacity: 0; transform: scale(.4); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero__branch path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+
+  .hero__branch-leaf {
+    animation: none;
+    opacity: 1;
+  }
+}
+
 .hero-hours {
   position: absolute;
   left: 100px;

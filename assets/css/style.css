@@ -249,11 +249,17 @@ img {
 
 .hero__logo {
   position: absolute;
+  display: block;
   right: 100px;
   bottom: 50px;
   width: 300px;
   height: auto;
   filter: drop-shadow(0 2px 1px rgba(0, 0, 0, .18))
+}
+
+.hero__logo img,
+.footer__logo img {
+  width: 100%
 }
 
 /* ===== NAV ===== */
@@ -843,6 +849,7 @@ img {
 }
 
 .footer__logo {
+  display: block;
   width: 290px;
   height: auto
 }

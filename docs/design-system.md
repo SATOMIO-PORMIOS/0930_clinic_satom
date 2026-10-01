@@ -11,7 +11,7 @@
 | base | `#F8FAF8` | 248, 250, 248 |
 | text | `#263B3A` | 38, 59, 58 |
 | white | `#FFFFFF` | 255, 255, 255 |
-| HERO | `#F0F059` | 240, 240, 89 |
+| HERO | `#FFD700` | 255, 215, 0 |
 | holiday | `#DC143C` | 220, 20, 60 |
 | black | `#000000` | 0, 0, 0 |
 | green | `#C5DF93` | 197, 223, 147 |
@@ -27,7 +27,7 @@
   --color-base: #F8FAF8;
   --color-text: #263B3A;
   --color-white: #FFFFFF;
-  --color-hero: #F0F059;
+  --color-hero: #FFD700;
   --color-holiday: #DC143C;
   --color-black: #000000;
   --color-green: #C5DF93;

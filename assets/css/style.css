@@ -210,6 +210,12 @@ img {
   color: var(--holiday)
 }
 
+.hero-hours__status-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: .15em;
+}
+
 .hours-table {
   width: 100%;
   border-collapse: collapse;

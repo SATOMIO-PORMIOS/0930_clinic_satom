@@ -88,12 +88,6 @@
 
   const heroHours = document.querySelector('.hours-table--hero');
   if (heroHours) {
-    const weekday = new Intl.DateTimeFormat('en-US', { timeZone: 'Asia/Tokyo', weekday: 'short' }).format(new Date());
-    const weekdayIndex = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'].indexOf(weekday) + 1;
-    heroHours.querySelectorAll('tr').forEach((row) => {
-      row.children[weekdayIndex]?.classList.add('is-today');
-    });
-
     const heading = document.querySelector('#hero-hours-title');
     if (heading) {
       let status = heading.querySelector('.hero-hours__status');
@@ -102,21 +96,59 @@
         status.className = 'hero-hours__status';
         heading.append(status);
       }
+      const reservationPrompt = document.createElement('a');
+      reservationPrompt.className = 'hero-hours__status-link';
+      reservationPrompt.href = document.querySelector('.hero-reserve--web')?.getAttribute('href') || '#contact';
+      reservationPrompt.textContent = 'Web予約をご利用ください';
+      const tokyoClock = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'Asia/Tokyo',
+        weekday: 'short',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23'
+      });
+      const weekdays = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
       const updateStatus = () => {
-        const parts = new Intl.DateTimeFormat('en-GB', {
-          timeZone: 'Asia/Tokyo', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
-        }).formatToParts(new Date());
+        const parts = tokyoClock.formatToParts(new Date());
+        const weekday = parts.find((part) => part.type === 'weekday').value;
+        const weekdayIndex = weekdays.indexOf(weekday);
         const hour = Number(parts.find((part) => part.type === 'hour').value);
         const minute = Number(parts.find((part) => part.type === 'minute').value);
         const time = hour * 60 + minute;
-        const morningOpen = time >= 9 * 60 && time < 12 * 60;
-        const afternoonOpen = time >= 13 * 60 && time < 18 * 60;
-        const openToday = weekdayIndex !== 4 && weekdayIndex !== 7 && !(weekdayIndex === 6 && afternoonOpen);
-        const isOpen = openToday && (morningOpen || afternoonOpen);
-        status.textContent = isOpen
-          ? '\u73fe\u5728\uff1a\u8a3a\u7642\u6642\u9593\u5185\u3067\u3059'
-          : '\u73fe\u5728\uff1a\u8a3a\u7642\u6642\u9593\u5916\u3067\u3059';
-        status.classList.toggle('is-closed', !isOpen);
+        heroHours.querySelectorAll('tr').forEach((row) => {
+          [...row.children].forEach((cell) => cell.classList.remove('is-today'));
+          row.children[weekdayIndex + 1]?.classList.add('is-today');
+        });
+
+        const closedToday = weekday === 'Thu' || weekday === 'Sun' || (weekday === 'Sat' && time >= 12 * 60);
+        const receptionOpen = (time >= 8 * 60 && time < 11 * 60) || (time >= 12 * 60 && time < 17 * 60);
+        const clinicOpen = (time >= 9 * 60 && time < 12 * 60) || (time >= 13 * 60 && time < 18 * 60);
+        const afternoonBreak = weekday !== 'Sat' && time >= 12 * 60 && time < 13 * 60;
+        let message;
+        let isClosed = false;
+        let shouldPromptReservation = false;
+
+        if (closedToday) {
+          message = '\u672c\u65e5\u306f\u4f11\u8a3a\u65e5\u3067\u3059';
+          isClosed = true;
+          shouldPromptReservation = true;
+        } else if (afternoonBreak) {
+          message = '\u5348\u5f8c\u306f13:00\u304b\u3089\u3067\u3059';
+        } else if (receptionOpen) {
+          message = '\u73fe\u5728\uff1a\u8a3a\u7642\u4e2d\u3067\u3059\uff08\u53d7\u4ed8\u4e2d\uff09';
+        } else if (clinicOpen) {
+          message = '\u8a3a\u7642\u4e2d\u3067\u3059\u304c\u53d7\u4ed8\u306f\u7d42\u4e86\u3057\u307e\u3057\u305f';
+          isClosed = true;
+          shouldPromptReservation = true;
+        } else {
+          message = '\u8a3a\u7642\u6642\u9593\u5916\u3067\u3059';
+          isClosed = true;
+          shouldPromptReservation = true;
+        }
+
+        status.textContent = message;
+        if (shouldPromptReservation) status.append(' ', reservationPrompt);
+        status.classList.toggle('is-closed', isClosed);
       };
       updateStatus();
       window.setInterval(updateStatus, 60000);

@@ -1,4 +1,13 @@
 (() => {
+  document.querySelectorAll('.faq-question').forEach((question) => {
+    question.addEventListener('click', () => {
+      const answer = document.getElementById(question.getAttribute('aria-controls'));
+      if (!answer) return;
+      const open = question.getAttribute('aria-expanded') !== 'true';
+      question.setAttribute('aria-expanded', String(open));
+      answer.hidden = !open;
+    });
+  });
   const menuButton = document.querySelector('.nav-toggle');
   const nav = document.querySelector('.main-nav');
   const hero = document.querySelector('.hero');

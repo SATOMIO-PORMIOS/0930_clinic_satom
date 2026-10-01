@@ -2019,6 +2019,25 @@ body {
   line-height: 1.55
 }
 
+.faq-question {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer
+}
+
+.faq-question:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px
+}
+
+.faq-answer[hidden] {
+  display: none
+}
+
 .faq-item p {
   margin: 0;
   color: #1f2f2e;

@@ -147,7 +147,7 @@
         }
 
         status.textContent = message;
-        if (shouldPromptReservation) status.append(' ', reservationPrompt);
+        if (shouldPromptReservation) status.append('\u3000', reservationPrompt);
         status.classList.toggle('is-closed', isClosed);
       };
       updateStatus();

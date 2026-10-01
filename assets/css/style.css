@@ -78,6 +78,10 @@ img {
   text-shadow: 0 1px 3px rgba(0, 0, 0, .08);
 }
 
+.hero__catch-kana {
+  font-size: .9em;
+}
+
 .hero-hours {
   position: absolute;
   left: 100px;

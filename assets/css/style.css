@@ -100,6 +100,7 @@ img {
   stroke-linejoin: round;
   pointer-events: none;
   filter: drop-shadow(0 1px 2px rgba(0, 0, 0, .18));
+  animation: soften-branch .35s ease 3.6s forwards;
 }
 
 .hero__branch path {
@@ -154,7 +155,16 @@ img {
   to { opacity: 1; transform: scale(1); }
 }
 
+@keyframes soften-branch {
+  to { opacity: .6; }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .hero__branch {
+    opacity: .6;
+    animation: none;
+  }
+
   .hero__branch path {
     animation: none;
     stroke-dashoffset: 0;

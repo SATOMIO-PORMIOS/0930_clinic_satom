@@ -2419,3 +2419,63 @@ body {
     padding: 0 8px
   }
 }
+
+/* =========================
+   News subpage
+   FAQページと同じ見出し・余白設計を使用
+   ========================= */
+.news-content {
+  padding-top: 58px;
+}
+
+.news-item {
+  margin-bottom: 42px;
+}
+
+.news-body {
+  padding: 0 82px;
+}
+
+.news-body p {
+  margin: 0;
+  color: #1f2f2e;
+  font-size: 16px;
+  line-height: 1.9;
+}
+
+.news-page .subpage-hero img {
+  object-position: center 50%;
+}
+
+@media (max-width:768px) {
+  .news-content {
+    padding-top: 44px;
+  }
+
+  .news-item {
+    margin-bottom: 36px;
+  }
+
+  .news-body {
+    padding: 0 24px;
+  }
+}
+
+@media (max-width:480px) {
+  .news-content {
+    padding-top: 34px;
+  }
+
+  .news-item {
+    margin-bottom: 30px;
+  }
+
+  .news-body {
+    padding: 0 8px;
+  }
+
+  .news-body p {
+    font-size: 16px;
+    line-height: 1.7;
+  }
+}

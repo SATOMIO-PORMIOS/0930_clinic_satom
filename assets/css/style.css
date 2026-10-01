@@ -1414,7 +1414,7 @@ body {
 
   .hero__inner {
     min-height: 690px;
-    padding: 58px 16px 18px
+    padding: 84px 16px 18px
   }
 
   .hero__catch {
@@ -1426,8 +1426,9 @@ body {
   }
 
   .hero__logo {
-    top: 130px;
-    right: 16px;
+    top: 16px;
+    right: auto;
+    left: 16px;
     width: 170px
   }
 
@@ -1979,6 +1980,31 @@ body {
 
   .nav-leaf {
     display: none
+  }
+}
+
+/* Keep the logo above the catch copy when the HERO schedule needs its space. */
+@media (min-width:481px) and (max-width:1200px) {
+  .hero__logo {
+    top: 16px;
+    right: auto;
+    bottom: auto;
+    left: 32px;
+    width: min(240px, 34vw);
+  }
+}
+
+@media (min-width:481px) and (max-width:1000px) {
+  .hero__inner {
+    padding-top: 120px;
+  }
+}
+
+@media (min-width:1001px) and (max-width:1200px) {
+  .hero__catch {
+    top: 120px;
+    left: 32px;
+    font-size: 56px;
   }
 }
 

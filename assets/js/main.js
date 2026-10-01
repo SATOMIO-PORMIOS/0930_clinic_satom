@@ -34,13 +34,19 @@
 
   if (sectionLinks.length) {
     const updateActiveSection = () => {
-      const marker = window.innerHeight * 0.35;
-      let active = sectionLinks[0];
+      const navBottom = nav.classList.contains('is-fixed') ? nav.getBoundingClientRect().bottom : 0;
+      const marker = Math.max(navBottom + 1, window.innerHeight * 0.35);
+      let active = null;
+      let nearestTop = -Infinity;
       sectionLinks.forEach((item) => {
-        if (item.section.getBoundingClientRect().top <= marker) active = item;
+        const top = item.section.getBoundingClientRect().top;
+        if (top <= marker && top > nearestTop) {
+          active = item;
+          nearestTop = top;
+        }
       });
-      sectionLinks.forEach(({ link, section }) => {
-        const selected = link === active.link;
+      sectionLinks.forEach(({ link }) => {
+        const selected = link === active?.link;
         link.classList.toggle('is-active', selected);
         if (selected) link.setAttribute('aria-current', 'location');
         else link.removeAttribute('aria-current');
@@ -48,6 +54,11 @@
     };
     window.addEventListener('scroll', updateActiveSection, { passive: true });
     window.addEventListener('resize', updateActiveSection);
+    if (nav && hero) {
+      const updateAfterStickyNav = () => requestAnimationFrame(updateActiveSection);
+      window.addEventListener('scroll', updateAfterStickyNav, { passive: true });
+      window.addEventListener('resize', updateAfterStickyNav);
+    }
     updateActiveSection();
   }
 

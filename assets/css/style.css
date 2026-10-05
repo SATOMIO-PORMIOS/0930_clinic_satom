@@ -2626,6 +2626,16 @@ body {
   margin: 0 0 24px;
 }
 
+.clinic-hours-table-wrap,
+.clinic-info-section > .hours-note,
+.clinic-departments,
+.clinic-info-note,
+.clinic-location-grid,
+.clinic-contact-list {
+  margin-left: 82px;
+  margin-right: 82px;
+}
+
 .clinic-hours-table-wrap {
   overflow-x: auto;
 }
@@ -2641,14 +2651,27 @@ body {
 .clinic-departments,
 .clinic-contact-list,
 .clinic-location-copy ul {
-  margin: 0;
+  margin: 0 82px;
   padding-left: 1.5em;
+  list-style-position: outside;
   font-size: 18px;
   line-height: 1.8;
 }
 
+.clinic-departments,
+.clinic-contact-list {
+  padding-left: 0;
+  list-style: none;
+}
+
+.clinic-location-copy ul {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
 .clinic-info-note {
-  margin: 18px 0 0;
+  margin: 18px 82px 0;
   font-size: 16px;
 }
 
@@ -2682,6 +2705,16 @@ body {
 
   .clinic-info-section .hours-subheading {
     margin-bottom: 20px;
+  }
+
+  .clinic-hours-table-wrap,
+  .clinic-info-section > .hours-note,
+  .clinic-departments,
+  .clinic-info-note,
+  .clinic-location-grid,
+  .clinic-contact-list {
+    margin-left: 24px;
+    margin-right: 24px;
   }
 
   .clinic-info-content .hours-table--main {
@@ -2764,6 +2797,16 @@ body {
 
   .clinic-info-section .hours-subheading {
     margin-bottom: 18px;
+  }
+
+  .clinic-hours-table-wrap,
+  .clinic-info-section > .hours-note,
+  .clinic-departments,
+  .clinic-info-note,
+  .clinic-location-grid,
+  .clinic-contact-list {
+    margin-left: 8px;
+    margin-right: 8px;
   }
 
   .clinic-location-grid {

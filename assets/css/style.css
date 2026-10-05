@@ -530,6 +530,22 @@ img {
   padding-top: 60px
 }
 
+#services > .content > .intro,
+#about .about-copy--left > p,
+#staff > .content > .intro {
+  font-size: 18px;
+}
+
+#about .about-copy--right h3,
+#about .about-copy--right li {
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+#about .about-copy--right h3 {
+  margin: 0;
+}
+
 .intro {
   margin: 0 0 42px;
   font-size: 16px;

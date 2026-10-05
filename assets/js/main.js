@@ -123,7 +123,6 @@
         const closedToday = weekday === 'Thu' || weekday === 'Sun' || (weekday === 'Sat' && time >= 12 * 60);
         const receptionOpen = (time >= 8 * 60 && time < 11 * 60) || (time >= 12 * 60 && time < 17 * 60);
         const clinicOpen = (time >= 9 * 60 && time < 12 * 60) || (time >= 13 * 60 && time < 18 * 60);
-        const afternoonBreak = weekday !== 'Sat' && time >= 12 * 60 && time < 13 * 60;
         let message;
         let isClosed = false;
         let shouldPromptReservation = false;
@@ -132,8 +131,10 @@
           message = '\u672c\u65e5\u306f\u4f11\u8a3a\u65e5\u3067\u3059';
           isClosed = true;
           shouldPromptReservation = true;
-        } else if (afternoonBreak) {
-          message = '\u5348\u5f8c\u306f13:00\u304b\u3089\u3067\u3059';
+        } else if (receptionOpen && !clinicOpen) {
+          message = time < 9 * 60
+            ? '受付中です（診療は9:00から）'
+            : '受付中です（午後の診療は13:00から）';
         } else if (receptionOpen) {
           message = '\u73fe\u5728\uff1a\u8a3a\u7642\u4e2d\u3067\u3059\uff08\u53d7\u4ed8\u4e2d\uff09';
         } else if (clinicOpen) {

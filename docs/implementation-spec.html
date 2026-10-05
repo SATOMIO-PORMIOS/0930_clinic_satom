@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="佐藤医院 Webサイトのページ構成、ファイル構成、共通機能、予約フォームの動作をまとめた実装仕様書。">
+  <title>実装仕様 | 佐藤医院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .spec-doc{width:min(1120px,calc(100% - 48px));margin:0 auto;padding:56px 0 80px}
+    .spec-doc__header{margin-bottom:34px;padding:34px 40px;border-radius:18px;background:var(--lightgreen)}
+    .spec-doc__eyebrow{margin:0 0 8px;color:var(--main);font-size:14px;font-weight:700;letter-spacing:.08em}
+    .spec-doc h1{margin:0;color:var(--text);font-size:clamp(28px,4vw,40px);line-height:1.4}
+    .spec-doc__intro{max-width:800px;margin:16px 0 0;font-size:17px;line-height:1.9}
+    .spec-doc__layout{display:grid;grid-template-columns:220px minmax(0,1fr);gap:42px;align-items:start}
+    .spec-doc__toc{position:sticky;top:24px;padding:20px;border:1px solid var(--line);border-radius:14px;background:#fff}
+    .spec-doc__toc h2{margin:0 0 12px;color:var(--main);font-size:17px}
+    .spec-doc__toc ol{margin:0;padding-left:1.35em;font-size:14px;line-height:1.8}
+    .spec-doc__toc a{text-decoration:underline;text-decoration-color:transparent;text-underline-offset:.18em}
+    .spec-doc__toc a:hover,.spec-doc__toc a:focus-visible{color:var(--main);text-decoration-color:currentColor}
+    .spec-doc__content{min-width:0}
+    .spec-doc__section{margin:0 0 42px;scroll-margin-top:24px}
+    .spec-doc__section>h2{margin:0 0 18px;padding:10px 16px;border-left:5px solid var(--main);border-radius:0 10px 10px 0;background:var(--lightgreen);color:var(--text);font-size:23px;line-height:1.5}
+    .spec-doc__section h3{margin:26px 0 10px;color:var(--main);font-size:18px}
+    .spec-doc__section p,.spec-doc__section li{font-size:16px;line-height:1.85}
+    .spec-doc__section p{margin:10px 0}.spec-doc__section ul,.spec-doc__section ol{margin:10px 0;padding-left:1.5em}
+    .spec-doc__section li+li{margin-top:6px}
+    .spec-doc__table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+    .spec-doc table{width:100%;border-collapse:collapse;font-size:15px}
+    .spec-doc th,.spec-doc td{padding:11px 14px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top}
+    .spec-doc thead th{background:var(--main);color:#fff;font-weight:700;white-space:nowrap}
+    .spec-doc tbody tr:last-child td{border-bottom:0}
+    .spec-doc code{padding:2px 6px;border-radius:5px;background:#eef4f2;color:#245c54;font-family:Consolas,"Yu Gothic",monospace;font-size:.92em}
+    .spec-doc__note{margin-top:18px!important;padding:14px 18px;border-left:4px solid var(--sub);border-radius:0 8px 8px 0;background:#f2f7f6}
+    .spec-doc__top{display:inline-block;margin-top:8px;color:var(--main);font-weight:700;text-decoration:underline;text-underline-offset:.2em}
+    .spec-doc a:focus-visible{outline:3px solid var(--hero);outline-offset:3px}
+    @media(max-width:760px){.spec-doc{width:calc(100% - 32px);padding:36px 0 56px}.spec-doc__header{padding:26px 24px}.spec-doc__layout{grid-template-columns:1fr;gap:28px}.spec-doc__toc{position:static}.spec-doc__toc ol{columns:2}}
+    @media(max-width:480px){.spec-doc{width:calc(100% - 24px)}.spec-doc__header{padding:22px 18px}.spec-doc__toc ol{columns:1}.spec-doc__section>h2{font-size:20px}}
+  </style>
+</head>
+
+<body class="subpage">
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <div class="breadcrumb__inner">
+      <a href="../index.html">トップページ</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">実装仕様</span>
+    </div>
+  </nav>
+
+  <main class="spec-doc">
+    <header class="spec-doc__header" id="top">
+      <p class="spec-doc__eyebrow">SATO CLINIC / IMPLEMENTATION</p>
+      <h1>実装仕様</h1>
+      <p class="spec-doc__intro">現在の佐藤医院 Webサイトを構成するページ、ファイル、共通機能と予約フォームの動作をまとめています。記載内容は現在の HTML・CSS・JavaScript の実装に基づきます。</p>
+    </header>
+
+    <div class="spec-doc__layout">
+      <nav class="spec-doc__toc" aria-label="このページの目次">
+        <h2>目次</h2>
+        <ol>
+          <li><a href="#overview">システム概要</a></li>
+          <li><a href="#pages">ページ構成</a></li>
+          <li><a href="#files">ファイル構成</a></li>
+          <li><a href="#shared-ui">共通 UI と動作</a></li>
+          <li><a href="#reservation">予約フォーム仕様</a></li>
+          <li><a href="#responsive">画面幅への対応</a></li>
+          <li><a href="#limitations">現状と制約</a></li>
+          <li><a href="#maintenance">変更時の確認事項</a></li>
+        </ol>
+      </nav>
+
+      <div class="spec-doc__content">
+        <section class="spec-doc__section" id="overview">
+          <h2>1. システム概要</h2>
+          <ul>
+            <li>静的な HTML ページで構成し、共通スタイルは <code>assets/css/style.css</code> にまとめる。</li>
+            <li>共通の画面操作は <code>assets/js/main.js</code>、予約フォーム固有の操作は <code>assets/js/reservation.js</code> が担当する。</li>
+            <li>Google Fonts の Zen Maru Gothic を使用する。外部の予約 API やサーバー処理は実装していない。</li>
+            <li>サイト上の医院、人物、連絡先、住所は教材用の架空データとして扱う。</li>
+          </ul>
+        </section>
+
+        <section class="spec-doc__section" id="pages">
+          <h2>2. ページ構成</h2>
+          <div class="spec-doc__table-wrap">
+            <table>
+              <thead><tr><th>ファイル</th><th>ページ</th><th>主な内容</th></tr></thead>
+              <tbody>
+                <tr><td><code>index.html</code></td><td>トップページ</td><td>ヒーロー、診療時間、お知らせ、診療内容、医院紹介、スタッフ紹介、アクセス。</td></tr>
+                <tr><td><code>news.html</code></td><td>お知らせ</td><td>お知らせ項目と各記事本文。</td></tr>
+                <tr><td><code>medical.html</code></td><td>診療内容</td><td>診療メニューと各診療内容の説明。</td></tr>
+                <tr><td><code>about.html</code></td><td>当院について</td><td>医院の方針、特徴、スタッフ紹介。</td></tr>
+                <tr><td><code>clinic-info.html</code></td><td>診療時間・診療科目・所在地</td><td>診療時間表、診療科目、アクセス、問い合わせ先。</td></tr>
+                <tr><td><code>faq.html</code></td><td>よくあるご質問</td><td>カテゴリ別 FAQ。質問を選ぶと回答を開閉。</td></tr>
+                <tr><td><code>reservation.html</code></td><td>Web予約</td><td>受診希望の入力、確認、サンプル完了画面。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>トップページの「Web予約フォーム」ボタンから <code>reservation.html</code> に移動します。</p>
+        </section>
+
+        <section class="spec-doc__section" id="files">
+          <h2>3. ファイル構成と役割</h2>
+          <div class="spec-doc__table-wrap">
+            <table>
+              <thead><tr><th>パス</th><th>役割</th></tr></thead>
+              <tbody>
+                <tr><td><code>assets/css/style.css</code></td><td>サイト全体の色・文字・レイアウト、ナビゲーション、パンくず、フッター、ページ共通スタイル。</td></tr>
+                <tr><td><code>assets/css/reservation.css</code></td><td>予約ページのヘッダーとフォーム、入力状態、確認・完了パネルの追加スタイル。</td></tr>
+                <tr><td><code>assets/js/main.js</code></td><td>ナビゲーション開閉、FAQ 開閉、トップへ戻る、トップページの診療状況とカルーセル等。</td></tr>
+                <tr><td><code>assets/js/reservation.js</code></td><td>予約フォームの条件付き項目、日付・時間候補、入力検証、画面状態遷移。</td></tr>
+                <tr><td><code>assets/images/</code></td><td>ロゴ、葉のモチーフ、施設・スタッフ写真、アイコン、地図等の画像素材。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="spec-doc__note">予約ページでは共通 CSS と共通 JavaScript を読み込んだうえで、予約専用ファイルを追加で読み込みます。</p>
+        </section>
+
+        <section class="spec-doc__section" id="shared-ui">
+          <h2>4. 共通 UI と動作</h2>
+          <ul>
+            <li>見た目は <code>assets/css/style.css</code>、共通の操作は <code>assets/js/main.js</code> が担当する。</li>
+            <li>JavaScript はページ内に対象の要素がある場合に処理を設定する。以下に各機能の適用ページと動作を記載する。</li>
+          </ul>
+
+          <h3>4-1. メインナビゲーション</h3>
+          <p>対象：トップページ・予約ページ。お知らせ、診療内容、当院について、診療時間・診療科目、アクセス、よくあるご質問の6項目を表示する。Web予約への入口はトップページの「Web予約フォーム」ボタンに設ける。</p>
+          <div class="spec-doc__table-wrap">
+            <table>
+              <thead><tr><th>操作・条件</th><th>表示・動作</th></tr></thead>
+              <tbody>
+                <tr><td>幅が1000pxを超える画面</td><td>緑の横並びメニューと葉の区切りを表示。項目にマウスを合わせる、または内部のリンクにキーボードフォーカスを移すと、詳細リンクのドロップダウンを表示する。</td></tr>
+                <tr><td>幅が1000px以下の画面</td><td>メニューボタンでメニューを開閉する。ドロップダウンは非表示になり、各項目の主リンクから移動する。</td></tr>
+                <tr><td>メニューボタンを押す</td><td><code>is-open</code> を切り替える。ボタンの <code>aria-expanded</code> と「メニューを開く／閉じる」の名前も更新する。</td></tr>
+                <tr><td>メニュー内のリンクを押す</td><td>リンク先へ移動し、開いていたメニューを閉じる。予約ページからトップの各セクションへは <code>index.html#対象ID</code> で移動する。</td></tr>
+                <tr><td>トップページをスクロール</td><td>ヒーロー下端が画面上端に達すると <code>is-fixed</code> を付け、ナビゲーションを固定する。ヒーローが見える位置へ戻ると解除する。予約ページではこのスクロール固定処理を行わない。</td></tr>
+                <tr><td>トップページをスクロール・リサイズ</td><td>ページ内リンクの対象セクションを調べ、現在位置に対応するリンクを黄色と下線で強調する。選択リンクには <code>aria-current="location"</code> を付ける。</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>現在位置の判定には、画面上端から高さの35%の位置と固定ナビ下端を比較した基準位置を使う。その位置を通過したセクションのうち、上端が最も近いものを選択する。</p>
+
+          <h3>4-2. パンくず・フッター・ページトップボタン</h3>
+          <ul>
+            <li>パンくずはトップ以外のサイト各ページに表示する。葉のアイコン、「ホーム」へのリンク、区切り記号、現在のページ名を並べ、サブカラーの背景と白文字で表示する。</li>
+            <li>サイト全7ページのフッターには、トップへ戻るロゴ、医院のキャッチコピー、電話番号・FAX・メール、教材用サイトの注意書き、著作権表記を配置する。</li>
+            <li>ページトップボタンはスクロール量が <code>400px</code> を超えると表示し、400px以下になると隠す。</li>
+            <li>ボタンを押すとページの最上部へ滑らかに移動する。端末で動きを減らす設定が有効な場合は、滑らかな移動を使わずに戻る。</li>
+          </ul>
+
+          <h3>4-3. FAQ の開閉</h3>
+          <p>対象：よくあるご質問ページ。</p>
+          <ul>
+            <li>初期状態では回答を <code>hidden</code> 属性で隠す。質問は通常のボタンとして、クリックやキーボードで操作できる。</li>
+            <li>質問を押すと、<code>aria-controls</code> が指す回答の表示・非表示を切り替え、<code>aria-expanded</code> を更新する。</li>
+            <li>質問ごとに独立して開閉するため、複数の回答を同時に表示できる。</li>
+          </ul>
+
+          <h3>4-4. 診療時間表と現在の受付状態</h3>
+          <p>対象：トップページのヒーロー内の診療時間表。ブラウザーの現在時刻を <code>Asia/Tokyo</code> として取得し、読み込み時と60秒ごとに当日の曜日列・状態表示を更新する。</p>
+          <div class="spec-doc__table-wrap">
+            <table>
+              <thead><tr><th>判定順</th><th>条件（開始時刻を含み、終了時刻を含まない）</th><th>表示</th></tr></thead>
+              <tbody>
+                <tr><td>1</td><td>木曜・日曜、または土曜12:00以降</td><td>本日は休診日です</td></tr>
+                <tr><td>2</td><td>上記以外で、受付中かつ診療開始前（8:00〜9:00、または土曜以外の12:00〜13:00）</td><td>受付中です（診療は9:00から）／受付中です（午後の診療は13:00から）</td></tr>
+                <tr><td>3</td><td>上記以外で、9:00〜11:00または13:00〜17:00</td><td>現在：診療中です（受付中）</td></tr>
+                <tr><td>4</td><td>上記以外で、9:00〜12:00または13:00〜18:00</td><td>診療中ですが受付は終了しました</td></tr>
+                <tr><td>5</td><td>いずれにも該当しない</td><td>診療時間外です</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p>休診・受付終了・時間外の場合は赤色の表示と「Web予約をご利用ください」のリンクを追加する。当日の曜日列には <code>is-today</code> を付ける。</p>
+          <p class="spec-doc__note">診療開始前は受付中であることと診療開始時刻を表示する。休診日の判定を優先するため、木曜・日曜と土曜午後には受付中と表示しない。祝日・臨時休診・お知らせ本文とは連動していない。</p>
+
+          <h3>4-5. 診療内容・スタッフ紹介のカルーセル</h3>
+          <p>対象：トップページの診療内容カードとスタッフ紹介カード。画面幅が <code>480px</code> 以下の場合に、カードを横へスクロールできる表示にする。</p>
+          <ul>
+            <li>カードが2枚以上ある場合、カード数に応じた切り替え用ドットボタンを JavaScript で作成する。</li>
+            <li>スワイプや横スクロールでカードを移動できる。ドットを押すと対応するカードの左端へスクロールする。</li>
+            <li>スクロール位置から現在のカードを判定し、ドットの強調表示と <code>aria-current</code> を更新する。「何枚目／全何枚」の情報を支援技術向けに通知する。</li>
+            <li>480pxの境界をまたいで表示を切り替えると、横スクロール位置を先頭へ戻す。自動送りは行わない。</li>
+            <li>動きを減らす設定では、ドットによる切り替え時の滑らかなスクロールを使わない。</li>
+          </ul>
+
+          <h3>4-6. 電話・地図・予約へのリンク</h3>
+          <ul>
+            <li><code>tel:</code> リンクを押すと「電話をかけますか？」の確認を表示する。キャンセルすると移動を止め、承認すると端末側の電話機能へ処理を渡す。</li>
+            <li>トップページと所在地ページの地図画像は、Google マップの「東京都台東区東上野3-35-9」の検索を新しいタブで開く。リンクには <code>rel="noopener noreferrer"</code> を指定する。</li>
+            <li>地図にカーソルを合わせると、ブラウザーの標準ツールチップで「クリックでGoogleMapを表示」と案内する。</li>
+            <li>ページ上の表示住所は「東京都台東区上野0-0-0」。地図リンク用の仮住所とは別に管理する。</li>
+            <li>トップの「Web予約フォーム」と診療状況に表示される予約リンクは <code>reservation.html</code> へ移動する。予約フォームの詳細は次章を参照する。</li>
+          </ul>
+        </section>
+
+        <section class="spec-doc__section" id="reservation">
+          <h2>5. 予約フォーム仕様</h2>
+          <h3>入力項目</h3>
+          <ul>
+            <li>受診区分（初診・再診）、診療内容、氏名、ふりがな、生年月日、電話番号、メールアドレス、第1希望日・時間、個人情報の取り扱いへの同意は必須。</li>
+            <li>再診を選ぶと診察券番号が表示される。診療内容で予防接種または健康診断を選ぶと、それぞれの詳細入力欄が表示される。</li>
+            <li>第2希望日・時間、症状・相談内容は任意。相談内容は最大500文字で、文字数を表示する。</li>
+          </ul>
+          <h3>入力検証と日時候補</h3>
+          <ul>
+            <li>必須入力とブラウザー標準の形式検証を行い、エラー時は該当欄に説明を表示して最初のエラー欄へフォーカスする。</li>
+            <li>希望日は当日以降。木曜・日曜は選べず、土曜は午前の時間帯だけ候補にする。</li>
+            <li>第1希望時間は必須。第2希望は未入力のままでも進める。</li>
+            <li>現在の JavaScript では祝日や医院の臨時休診日は判定しない。</li>
+          </ul>
+          <h3>画面遷移</h3>
+          <ol>
+            <li>入力画面で検証に通ると、入力フォームを隠して確認表を表示する。</li>
+            <li>「入力内容を修正する」で入力画面へ戻る。</li>
+            <li>「予約を申し込む」で完了表示へ移り、ステップ表示を完了にする。</li>
+          </ol>
+          <p class="spec-doc__note">完了画面はブラウザー内のサンプル遷移です。入力内容の送信、保存、予約登録、医院からの連絡は発生しません。氏名・連絡先・生年月日などの入力を求める実運用には、送信先、個人情報の取扱い、セキュリティを別途設計する必要があります。</p>
+        </section>
+
+        <section class="spec-doc__section" id="responsive">
+          <h2>6. 画面幅への対応</h2>
+          <ul>
+            <li>主な CSS ブレークポイントは <code>1200px</code>、<code>1000px</code>、<code>768px</code>、<code>480px</code>。</li>
+            <li>予約フォームは広い画面で2列、<code>768px</code> 以下で1列にする。</li>
+            <li>小さい画面ではナビゲーションを開閉式にし、予約操作ボタンを横幅いっぱいにする。</li>
+            <li>狭い画面では確認表の見出しと値を縦に並べる。</li>
+          </ul>
+        </section>
+
+        <section class="spec-doc__section" id="limitations">
+          <h2>7. 現状と制約</h2>
+          <ul>
+            <li>予約ページは静的なデモで、バックエンド、データベース、メール送信、予約枠管理を備えていない。</li>
+            <li>予約完了表示は申込データが医院へ届いたことを意味しない。</li>
+            <li>予約フォームの日時制限は曜日ベースのみで、祝日・臨時休診・実際の空き枠とは連動しない。</li>
+            <li>住所・電話番号・診療情報は教材用の架空データである。</li>
+          </ul>
+        </section>
+
+        <section class="spec-doc__section" id="maintenance">
+          <h2>8. 変更時の確認事項</h2>
+          <ul>
+            <li>共通ナビゲーションやフッターの変更は、トップページとサブページで表示が揃うよう反映する。</li>
+            <li>予約項目を変更するときは、HTML の入力名、JavaScript の検証・確認表、説明文を合わせて更新する。</li>
+            <li>曜日や診療時間を変更するときは、トップの診療表示、診療時間ページ、予約日時制限、お知らせの整合性を確認する。</li>
+            <li>新しい CSS は共通部品なら <code>style.css</code>、予約ページ専用なら <code>reservation.css</code> に記述する。</li>
+            <li>実送信機能を追加する場合は、画面上の完了表示だけでなくサーバー側の検証・保存・通知・個人情報保護まで設計する。</li>
+          </ul>
+        </section>
+
+        <a class="spec-doc__top" href="#top">ページの先頭へ戻る ↑</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="佐藤医院 トップページへ">
+          <img src="../assets/images/logo.png" alt="佐藤医院 Sato Clinic">
+        </a>
+        <span>地域に根ざした医療</span>
+      </div>
+      <div class="footer__contact" aria-label="お問い合わせ">
+        <h2>実装仕様</h2>
+        <p class="footer__contact-note">このページはサイトの現在の実装内容を記録しています。</p>
+      </div>
+    </div>
+    <p class="training-disclaimer">本サイトは職業訓練の学習用に制作した架空のサンプルサイトです。掲載している医療機関・人物・連絡先・所在地はすべて架空であり、実在のものとは関係ありません。</p>
+    <div class="footer__copyright">© 2026 Sato Clinic. All Rights Reserved.</div>
+  </footer>
+</body>
+
+</html>

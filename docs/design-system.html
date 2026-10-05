@@ -1,0 +1,481 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="佐藤医院 Webサイトの配色、文字、レイアウト、コンポーネントに関するデザインルール。">
+  <title>デザインルール | 佐藤医院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <style>
+    .design-doc {
+      width: min(1120px, calc(100% - 48px));
+      margin: 0 auto;
+      padding: 56px 0 80px;
+    }
+
+    .design-doc__header {
+      margin-bottom: 34px;
+      padding: 34px 40px;
+      border-radius: 18px;
+      background: var(--lightgreen);
+    }
+
+    .design-doc__eyebrow {
+      margin: 0 0 8px;
+      color: var(--main);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+
+    .design-doc h1 {
+      margin: 0;
+      color: var(--text);
+      font-size: clamp(28px, 4vw, 40px);
+      line-height: 1.4;
+    }
+
+    .design-doc__intro {
+      max-width: 760px;
+      margin: 16px 0 0;
+      font-size: 17px;
+      line-height: 1.9;
+    }
+
+    .design-doc__layout {
+      display: grid;
+      grid-template-columns: 220px minmax(0, 1fr);
+      gap: 42px;
+      align-items: start;
+    }
+
+    .design-doc__toc {
+      position: sticky;
+      top: 24px;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+    }
+
+    .design-doc__toc h2 {
+      margin: 0 0 12px;
+      color: var(--main);
+      font-size: 17px;
+    }
+
+    .design-doc__toc ol {
+      margin: 0;
+      padding-left: 1.35em;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+
+    .design-doc__toc a {
+      text-decoration: underline;
+      text-decoration-color: transparent;
+      text-underline-offset: .18em;
+    }
+
+    .design-doc__toc a:hover,
+    .design-doc__toc a:focus-visible {
+      color: var(--main);
+      text-decoration-color: currentColor;
+    }
+
+    .design-doc__content {
+      min-width: 0;
+    }
+
+    .design-doc__section {
+      margin: 0 0 42px;
+      scroll-margin-top: 24px;
+    }
+
+    .design-doc__section > h2 {
+      margin: 0 0 18px;
+      padding: 10px 16px;
+      border-left: 5px solid var(--main);
+      border-radius: 0 10px 10px 0;
+      background: var(--lightgreen);
+      color: var(--text);
+      font-size: 23px;
+      line-height: 1.5;
+    }
+
+    .design-doc__section h3 {
+      margin: 26px 0 10px;
+      color: var(--main);
+      font-size: 18px;
+    }
+
+    .design-doc__section p,
+    .design-doc__section li {
+      font-size: 16px;
+      line-height: 1.85;
+    }
+
+    .design-doc__section p {
+      margin: 10px 0;
+    }
+
+    .design-doc__section ul {
+      margin: 10px 0;
+      padding-left: 1.5em;
+    }
+
+    .design-doc__section li + li {
+      margin-top: 6px;
+    }
+
+    .design-doc__table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: #fff;
+    }
+
+    .design-doc table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    .design-doc th,
+    .design-doc td {
+      padding: 11px 14px;
+      border-bottom: 1px solid var(--line);
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .design-doc thead th {
+      background: var(--main);
+      color: #fff;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .design-doc tbody tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .design-doc code {
+      padding: 2px 6px;
+      border-radius: 5px;
+      background: #eef4f2;
+      color: #245c54;
+      font-family: Consolas, "Yu Gothic", monospace;
+      font-size: .92em;
+    }
+
+    .color-swatch {
+      display: inline-block;
+      width: 34px;
+      height: 24px;
+      margin-right: 8px;
+      border: 1px solid rgba(38, 59, 58, .14);
+      border-radius: 6px;
+      vertical-align: middle;
+    }
+
+    .design-doc pre {
+      overflow-x: auto;
+      margin: 16px 0;
+      padding: 20px;
+      border-radius: 12px;
+      background: #263B3A;
+      color: #f8faf8;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .design-doc pre code {
+      padding: 0;
+      background: transparent;
+      color: inherit;
+    }
+
+    .design-doc__note {
+      margin-top: 18px !important;
+      padding: 14px 18px;
+      border-left: 4px solid var(--sub);
+      border-radius: 0 8px 8px 0;
+      background: #f2f7f6;
+    }
+
+    .design-doc__top {
+      display: inline-block;
+      margin-top: 8px;
+      color: var(--main);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: .2em;
+    }
+
+    .design-doc a:focus-visible {
+      outline: 3px solid var(--hero);
+      outline-offset: 3px;
+    }
+
+    @media (max-width: 760px) {
+      .design-doc {
+        width: calc(100% - 32px);
+        padding: 36px 0 56px;
+      }
+
+      .design-doc__header {
+        padding: 26px 24px;
+      }
+
+      .design-doc__layout {
+        grid-template-columns: 1fr;
+        gap: 28px;
+      }
+
+      .design-doc__toc {
+        position: static;
+      }
+
+      .design-doc__toc ol {
+        columns: 2;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .design-doc {
+        width: calc(100% - 24px);
+      }
+
+      .design-doc__header {
+        padding: 22px 18px;
+      }
+
+      .design-doc__toc ol {
+        columns: 1;
+      }
+
+      .design-doc__section > h2 {
+        font-size: 20px;
+      }
+    }
+  </style>
+</head>
+
+<body class="subpage">
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <div class="breadcrumb__inner">
+      <a href="../index.html">トップページ</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">デザインルール</span>
+    </div>
+  </nav>
+
+  <main class="design-doc">
+    <header class="design-doc__header">
+      <p class="design-doc__eyebrow">SATO CLINIC / DESIGN GUIDE</p>
+      <h1>デザインルール</h1>
+      <p class="design-doc__intro">佐藤医院 Webサイトの見た目と使いやすさを揃えるためのガイドです。ページや部品を追加・更新するときに参照してください。</p>
+    </header>
+
+    <div class="design-doc__layout">
+      <nav class="design-doc__toc" aria-label="このページの目次">
+        <h2>目次</h2>
+        <ol>
+          <li><a href="#direction">デザインの方向性</a></li>
+          <li><a href="#colors">色</a></li>
+          <li><a href="#type">文字</a></li>
+          <li><a href="#layout">レイアウトと余白</a></li>
+          <li><a href="#components">共通コンポーネント</a></li>
+          <li><a href="#accessibility">動きとアクセシビリティ</a></li>
+          <li><a href="#assets">画像・ブランド素材</a></li>
+          <li><a href="#implementation">実装上の注意</a></li>
+          <li><a href="#tokens">CSSトークン</a></li>
+        </ol>
+      </nav>
+
+      <div class="design-doc__content">
+        <section class="design-doc__section" id="direction">
+          <h2>1. デザインの方向性</h2>
+          <ul>
+            <li>地域に根ざした、親しみやすく穏やかな医療機関の印象にする。</li>
+            <li>白・オフホワイトを基調に、青みのある緑を主要色として使う。</li>
+            <li>葉の写真・イラストを見出しやナビゲーションのアクセントに使う。</li>
+            <li>施設やスタッフの写真を大きく見せ、飾りより情報の読みやすさを優先する。</li>
+            <li>角丸や柔らかな背景色を使い、強い影や高彩度色を多用しない。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="colors">
+          <h2>2. 色</h2>
+          <div class="design-doc__table-wrap">
+            <table>
+              <thead><tr><th>役割</th><th>変数</th><th>色見本・値</th><th>用途</th></tr></thead>
+              <tbody>
+                <tr><td>メイン</td><td><code>--main</code></td><td><span class="color-swatch" style="background:#2E8B7F"></span><code>#2E8B7F</code></td><td>ナビゲーション、ボタン、フッター</td></tr>
+                <tr><td>サブ</td><td><code>--sub</code></td><td><span class="color-swatch" style="background:#6A9199"></span><code>#6A9199</code></td><td>セクション見出し、パンくず</td></tr>
+                <tr><td>淡い緑</td><td><code>--lightgreen</code></td><td><span class="color-swatch" style="background:#DCEDEA"></span><code>#DCEDEA</code></td><td>FAQ・診療内容などの小見出し</td></tr>
+                <tr><td>ベージュ</td><td><code>--beige</code></td><td><span class="color-swatch" style="background:#EDE4D6"></span><code>#EDE4D6</code></td><td>セクション背景の変化</td></tr>
+                <tr><td>ベース</td><td><code>--base</code></td><td><span class="color-swatch" style="background:#F8FAF8"></span><code>#F8FAF8</code></td><td>ページ背景</td></tr>
+                <tr><td>本文</td><td><code>--text</code></td><td><span class="color-swatch" style="background:#263B3A"></span><code>#263B3A</code></td><td>基本文字</td></tr>
+                <tr><td>白</td><td><code>--white</code></td><td><span class="color-swatch" style="background:#FFFFFF"></span><code>#FFFFFF</code></td><td>カード、反転文字</td></tr>
+                <tr><td>ヒーロー強調</td><td><code>--hero</code></td><td><span class="color-swatch" style="background:#FFD700"></span><code>#FFD700</code></td><td>キャッチコピー、選択中ナビ</td></tr>
+                <tr><td>休診・注意</td><td><code>--holiday</code></td><td><span class="color-swatch" style="background:#DC143C"></span><code>#DC143C</code></td><td>休診表示</td></tr>
+                <tr><td>葉の黄緑</td><td><code>--green</code></td><td><span class="color-swatch" style="background:#C5DF93"></span><code>#C5DF93</code></td><td>診療表などの補助的な強調</td></tr>
+                <tr><td>罫線</td><td><code>--line</code></td><td><span class="color-swatch" style="background:#DCE6E3"></span><code>#DCE6E3</code></td><td>表・区切り線</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="design-doc__note">新しい色が必要な場合は、まず既存変数で表現できるか確認し、追加する場合は用途を限定してください。</p>
+        </section>
+
+        <section class="design-doc__section" id="type">
+          <h2>3. 文字</h2>
+          <ul>
+            <li>基本書体は Google Fonts の <code>Zen Maru Gothic</code>。代替書体は Noto Sans JP、Yu Gothic、Meiryo、sans-serif の順。</li>
+            <li>本文は <code>16px</code>、行送り <code>1.75</code>、字間 <code>.015em</code>。</li>
+            <li>リード文は <code>18px</code>、行送り <code>1.8〜1.9</code>。</li>
+            <li>セクション見出しは <code>24px</code>、下層ページの項目見出しは <code>20px</code>、小見出しは <code>18〜20px</code>。</li>
+            <li>ボタン文字は <code>17px</code>、太さ <code>600</code>。</li>
+            <li>ヒーローのキャッチコピーはデスクトップ <code>64px</code>。画面幅に応じて縮小する。</li>
+            <li>情報の階層は文字サイズだけでなく、余白と背景色でも示す。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="layout">
+          <h2>4. レイアウトと余白</h2>
+          <ul>
+            <li>デスクトップの共通コンテンツ幅は最大 <code>1240px</code>。トップページの左右余白は基本 <code>100px</code>。</li>
+            <li>下層ページ本文は最大 <code>1200px</code>、左右 <code>24px</code> 以上の余白を確保する。</li>
+            <li>トップページのセクション見出し帯は高さ <code>50px</code>。本文は上に <code>58〜60px</code> の余白を置く。</li>
+            <li>下層ページの本文上部は <code>58px</code>、セクション間はおよそ <code>42px</code>。</li>
+            <li>段落は内容のまとまりごとに分け、関連情報を同じ列やカードにまとめる。</li>
+          </ul>
+          <h3>レスポンシブ</h3>
+          <ul>
+            <li><code>1000px</code> 以下では左右余白を <code>32px</code> 前後に縮める。</li>
+            <li><code>768px</code> 以下では本文の左右余白を <code>24px</code> 前後にする。</li>
+            <li><code>480px</code> 以下では左右余白を <code>8〜12px</code> 程度にし、2列表示を必要に応じて1列にする。</li>
+            <li>ページ全体に横スクロールを出さない。横幅が必要な表は、表のコンテナ内でスクロールさせる。</li>
+            <li>小さい画面でも本文文字は原則 <code>16px</code> 以上にする。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="components">
+          <h2>5. 共通コンポーネント</h2>
+          <h3>ヘッダーとナビゲーション</h3>
+          <ul>
+            <li>トップページは施設写真を背景に、キャッチコピー、診療時間、ロゴを配置する。</li>
+            <li>キャッチコピーは黄色の太字とし、葉の枝のモチーフを添える。</li>
+            <li>メインナビはメイン緑の帯に白文字、選択中項目は黄色で示す。</li>
+            <li>下層ページはページごとのヒーロー画像、パンくず帯、本文の順にする。</li>
+            <li>モバイルのナビゲーションはトグルで開閉できる形にする。</li>
+          </ul>
+          <h3>見出し</h3>
+          <ul>
+            <li>トップページの大見出しはサブカラーの帯に白文字と葉の画像を並べる。</li>
+            <li>下層ページの項目見出しは淡い緑の帯に本文色の文字と小さな葉アイコンを置く。</li>
+            <li>装飾用の葉画像は空の <code>alt</code> を使う。</li>
+          </ul>
+          <h3>ボタンとリンク</h3>
+          <ul>
+            <li>主ボタンはメイン緑のピル形（<code>border-radius: 999px</code>）、白文字。標準 <code>17px</code>、最小高さ <code>44px</code>。</li>
+            <li>ホバー時は少し濃い緑へ変化させる。</li>
+            <li>画像リンクにも、用途が分かる代替テキストまたはアクセシブルな名前を付ける。</li>
+            <li>新しいタブで開く外部リンクには <code>rel="noopener noreferrer"</code> を付ける。</li>
+          </ul>
+          <h3>カード・画像・情報一覧</h3>
+          <ul>
+            <li>サービスカードは白背景と大きめの角丸を基本とし、画像と本文の対応を明確にする。</li>
+            <li>人物写真は統一した比率・トリミングを使う。画像は <code>max-width: 100%</code> を基本とする。</li>
+            <li>診療時間表は曜日と時間帯の対応を明確にし、罫線とセル余白を設ける。</li>
+            <li>休診表示は色に加えて「休」などの文字も使う。</li>
+            <li>お知らせはタイトル・日付・分類が見分けられる一覧にする。FAQ は質問と回答の対応、開閉状態を明確にする。</li>
+          </ul>
+          <h3>フッター</h3>
+          <ul>
+            <li>メイン緑の背景に白文字を使う。</li>
+            <li>ロゴ、連絡先、架空サイトである旨、著作権表記を整理して掲載する。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="accessibility">
+          <h2>6. 動きとアクセシビリティ</h2>
+          <ul>
+            <li>動きは葉の演出など短く補助的な用途に限る。</li>
+            <li><code>prefers-reduced-motion: reduce</code> の場合は装飾アニメーションを止める。</li>
+            <li>操作要素はキーボードで使えるようにし、フォーカス位置を見える状態にする。</li>
+            <li>色だけで状態を区別せず、文字や記号も併用する。</li>
+            <li>内容を伝える画像には適切な代替テキストを付け、装飾画像は空の <code>alt</code> を使う。</li>
+            <li>リンク・ボタンには用途が分かる名前を付ける。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="assets">
+          <h2>7. 画像・ブランド素材</h2>
+          <ul>
+            <li>既存のロゴ、葉素材、施設写真、スタッフ写真を優先して再利用する。</li>
+            <li>追加素材は既存の色味、写真の明るさ、自然な雰囲気に合わせる。</li>
+            <li>ロゴや葉の色・形を変更する場合は全ページで一貫させる。</li>
+            <li>地図のクリック先や住所などのデータは、画面表示とリンク先を個別に確認する。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="implementation">
+          <h2>8. 実装上の注意</h2>
+          <ul>
+            <li>共通見た目は <code>assets/css/style.css</code> に追加し、ページ固有スタイルはページクラス配下に限定する。</li>
+            <li>既存の CSS 変数とコンポーネントを優先し、同じ見た目の別実装を増やさない。</li>
+            <li>ブレークポイントは既存の <code>1200px</code>、<code>1000px</code>、<code>768px</code>、<code>480px</code> を基本にする。</li>
+            <li>各ページのヘッダー、パンくず、フッター、見出し、本文幅を揃える。</li>
+            <li>所在地・診療時間・連絡先を変更するときは、関連ページ間の整合性を確認する。</li>
+          </ul>
+        </section>
+
+        <section class="design-doc__section" id="tokens">
+          <h2>9. 現状のデザイントークン</h2>
+          <pre><code>:root {
+  --main: #2E8B7F;
+  --sub: #6A9199;
+  --lightgreen: #DCEDEA;
+  --beige: #EDE4D6;
+  --base: #F8FAF8;
+  --text: #263B3A;
+  --white: #FFFFFF;
+  --hero: #FFD700;
+  --holiday: #DC143C;
+  --green: #C5DF93;
+  --line: #DCE6E3;
+  --side: 100px;
+  --content: 1240px;
+}</code></pre>
+          <p class="design-doc__note">この一覧は現在の実装を記録したものです。CSS のトークンを変更したときは、この文書も更新してください。</p>
+        </section>
+
+        <a class="design-doc__top" href="#top">ページの先頭へ戻る ↑</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div class="footer__brand">
+        <a href="../index.html" class="footer__logo" aria-label="佐藤医院 トップページへ">
+          <img src="../assets/images/logo.png" alt="佐藤医院 Sato Clinic">
+        </a>
+        <span>地域に根ざした医療</span>
+      </div>
+      <div class="footer__contact">
+        <h2>デザインルール</h2>
+        <p class="footer__contact-note">このページはサイト制作時のデザイン指針です。</p>
+      </div>
+    </div>
+    <div class="footer__copyright">© 2026 Sato Clinic. All Rights Reserved.</div>
+  </footer>
+</body>
+
+</html>

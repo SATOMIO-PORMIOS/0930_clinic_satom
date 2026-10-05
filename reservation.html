@@ -1,0 +1,293 @@
+﻿<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="佐藤医院のWeb予約申込フォームです。一般診療、予防接種、健康診断の予約希望を受け付けています。">
+  <title>Web予約 | 佐藤医院</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./assets/css/style.css">
+  <link rel="stylesheet" href="./assets/css/reservation.css">
+  <script src="./assets/js/reservation.js" defer></script>
+  <script src="./assets/js/main.js" defer></script>
+</head>
+<body class="subpage reservation-page">
+  <header class="reservation-header">
+    <div class="reservation-header__inner">
+      <a class="reservation-header__logo" href="./index.html" aria-label="佐藤医院 トップページへ">
+        <img src="./assets/images/logo.png" alt="佐藤医院 Sato Clinic">
+      </a>
+      <a class="reservation-header__phone" href="tel:0000000000">お電話でのご予約<br><strong>00-0000-0000</strong></a>
+      <button class="nav-toggle" type="button" aria-label="メニューを開く" aria-controls="main-navigation" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <nav class="main-nav" id="main-navigation" aria-label="メインナビゲーション">
+      <div class="main-nav__inner">
+        <div class="nav-dropdown-group">
+          <a href="./index.html#news">お知らせ</a>
+          <div class="nav-dropdown-menu" aria-label="お知らせの項目">
+            <a href="./news.html">お知らせページへ</a>
+          </div>
+        </div><img class="nav-leaf" src="./assets/images/LEAF_B&amp;G.png" alt="">
+        <div class="nav-dropdown-group">
+          <a href="./index.html#services">診療内容</a>
+          <div class="nav-dropdown-menu" aria-label="診療内容の項目">
+            <a href="./medical.html">診療内容ページへ</a>
+          </div>
+        </div><img class="nav-leaf" src="./assets/images/LEAF_B&amp;G.png" alt="">
+        <div class="nav-dropdown-group">
+          <a href="./index.html#about">当院について</a>
+          <div class="nav-dropdown-menu" aria-label="当院についての項目">
+            <a href="./about.html">当院についてページへ</a>
+            <a href="./about.html#about-policy">診療方針</a>
+            <a href="./about.html#about-community">地域に根ざした医療</a>
+            <a href="./about.html#about-family">ご家族全員をサポート</a>
+            <a href="./about.html#about-team">医療設備とチーム医療</a>
+            <a href="./about.html#about-values">医院の理念・方針</a>
+            <a href="./about.html#about-future">患者様とともに歩む未来</a>
+            <a href="./about.html#about-staff-title">スタッフ紹介</a>
+          </div>
+        </div><img class="nav-leaf" src="./assets/images/LEAF_B&amp;G.png" alt="">
+        <div class="nav-dropdown-group">
+          <a href="./index.html#hours">診療時間・診療科目</a>
+          <div class="nav-dropdown-menu" aria-label="診療時間・診療科目の項目">
+            <a href="./clinic-info.html">診療時間・診療科目・所在地ページへ</a>
+          </div>
+        </div><img class="nav-leaf" src="./assets/images/LEAF_B&amp;G.png" alt="">
+        <div class="nav-dropdown-group">
+          <a href="./index.html#access">アクセス</a>
+          <div class="nav-dropdown-menu" aria-label="アクセスの項目">
+            <a href="./clinic-info.html">診療時間・診療科目・所在地ページへ</a>
+          </div>
+        </div><img class="nav-leaf" src="./assets/images/LEAF_B&amp;G.png" alt="">
+        <div class="nav-dropdown-group">
+          <a href="./faq.html">よくあるご質問</a>
+          <div class="nav-dropdown-menu" aria-label="よくあるご質問の項目">
+            <a href="./faq.html#faq-medical">診療について</a>
+            <a href="./faq.html#faq-prevention">予防接種・健康診断について</a>
+            <a href="./faq.html#faq-payment">お支払いについて</a>
+            <a href="./faq.html#faq-other">その他</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <nav class="breadcrumb" aria-label="パンくずリスト">
+    <div class="breadcrumb__inner">
+      <img src="./assets/images/LEAF_B&amp;G.png" alt="">
+      <a href="./index.html">ホーム</a>
+      <span aria-hidden="true">&gt;</span>
+      <span aria-current="page">Web予約</span>
+    </div>
+  </nav>
+
+  <main class="reservation-main">
+    <section class="reservation-hero" aria-labelledby="reservation-title">
+      <div class="reservation-title-row">
+        <img src="./assets/images/LEAF_B&amp;G.png" alt="" aria-hidden="true">
+        <div>
+          <p class="reservation-eyebrow">WEB RESERVATION</p>
+          <h1 id="reservation-title">Web予約</h1>
+        </div>
+      </div>
+      <p class="reservation-lead">一般診療は予約優先制です。予防接種・健康診断は完全予約制となっております。下記フォームよりご希望内容をお送りください。</p>
+    </section>
+
+    <section class="reservation-status" aria-label="予約手続きの流れ">
+      <ol class="step-list">
+        <li class="is-active"><span>1</span>入力</li>
+        <li><span>2</span>確認</li>
+        <li><span>3</span>完了</li>
+      </ol>
+    </section>
+
+    <section class="reservation-notice" aria-labelledby="notice-title">
+      <h2 id="notice-title">ご予約の前にご確認ください</h2>
+      <ul>
+        <li>Webフォームからの送信は「予約申込」です。医院からの確認後に予約確定となります。</li>
+        <li>休診日は木曜・土曜午後・日曜です。</li>
+        <li>祝祭日は診療する場合がありますが、休診となる場合もありますので、お知らせをご確認ください。</li>
+        <li>お急ぎの場合や当日の受診をご希望の場合は、お電話でお問い合わせください。</li>
+      </ul>
+    </section>
+
+    <form class="reservation-form" id="reservation-form" novalidate>
+      <section class="form-section" aria-labelledby="visit-title">
+        <h2 id="visit-title"><img src="./assets/images/LEAF_B&amp;G.png" alt="">受診内容</h2>
+        <div class="form-grid">
+          <fieldset class="form-field form-field--full">
+            <legend>受診区分 <span class="required">必須</span></legend>
+            <div class="choice-row">
+              <label><input type="radio" name="visitType" value="初診" required> 初診</label>
+              <label><input type="radio" name="visitType" value="再診"> 再診</label>
+            </div>
+            <p class="field-error" data-error-for="visitType"></p>
+          </fieldset>
+
+          <div class="form-field form-field--full conditional-field" id="patient-number-field" hidden>
+            <label for="patientNumber">診察券番号 <span class="optional">任意</span></label>
+            <input id="patientNumber" name="patientNumber" type="text" inputmode="numeric" autocomplete="off" placeholder="例：123456">
+            <p class="field-hint">診察券をお持ちの場合はご入力ください。</p>
+          </div>
+
+          <div class="form-field form-field--full">
+            <label for="department">診療内容 <span class="required">必須</span></label>
+            <select id="department" name="department" required>
+              <option value="">選択してください</option>
+              <option value="一般診療">一般診療</option>
+              <option value="予防接種">予防接種</option>
+              <option value="健康診断">健康診断</option>
+              <option value="その他">その他</option>
+            </select>
+            <p class="field-error" data-error-for="department"></p>
+          </div>
+
+          <div class="form-field form-field--full conditional-field" id="vaccination-field" hidden>
+            <label for="vaccination">希望する予防接種</label>
+            <input id="vaccination" name="vaccination" type="text" placeholder="例：インフルエンザ予防接種">
+          </div>
+
+          <div class="form-field form-field--full conditional-field" id="checkup-field" hidden>
+            <label for="checkup">健康診断の種類</label>
+            <input id="checkup" name="checkup" type="text" placeholder="例：一般健康診断">
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section" aria-labelledby="person-title">
+        <h2 id="person-title"><img src="./assets/images/LEAF_B&amp;G.png" alt="">患者様情報</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="name">お名前 <span class="required">必須</span></label>
+            <input id="name" name="name" type="text" autocomplete="name" required placeholder="佐藤 花子">
+            <p class="field-error" data-error-for="name"></p>
+          </div>
+          <div class="form-field">
+            <label for="kana">ふりがな <span class="required">必須</span></label>
+            <input id="kana" name="kana" type="text" required placeholder="さとう はなこ">
+            <p class="field-error" data-error-for="kana"></p>
+          </div>
+          <div class="form-field">
+            <label for="birthdate">生年月日 <span class="required">必須</span></label>
+            <input id="birthdate" name="birthdate" type="date" required>
+            <p class="field-error" data-error-for="birthdate"></p>
+          </div>
+          <div class="form-field">
+            <label for="phone">電話番号 <span class="required">必須</span></label>
+            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required placeholder="090-1234-5678">
+            <p class="field-error" data-error-for="phone"></p>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="email">メールアドレス <span class="required">必須</span></label>
+            <input id="email" name="email" type="email" autocomplete="email" required placeholder="example@example.com">
+            <p class="field-error" data-error-for="email"></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section" aria-labelledby="date-title">
+        <h2 id="date-title"><img src="./assets/images/LEAF_B&amp;G.png" alt="">希望日時</h2>
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="date1">第1希望日 <span class="required">必須</span></label>
+            <input id="date1" name="date1" type="date" required>
+            <p class="field-hint">木曜・日曜は選択できません。</p>
+            <p class="field-error" data-error-for="date1"></p>
+          </div>
+          <div class="form-field">
+            <label for="time1">第1希望時間 <span class="required">必須</span></label>
+            <select id="time1" name="time1" required>
+              <option value="">選択してください</option>
+              <option value="9:00〜10:00">9:00〜10:00</option>
+              <option value="10:00〜11:00">10:00〜11:00</option>
+              <option value="11:00〜12:00">11:00〜12:00</option>
+              <option value="13:00〜14:00">13:00〜14:00</option>
+              <option value="14:00〜15:00">14:00〜15:00</option>
+              <option value="15:00〜16:00">15:00〜16:00</option>
+              <option value="16:00〜17:00">16:00〜17:00</option>
+              <option value="17:00〜18:00">17:00〜18:00</option>
+            </select>
+            <p class="field-error" data-error-for="time1"></p>
+          </div>
+          <div class="form-field">
+            <label for="date2">第2希望日 <span class="optional">任意</span></label>
+            <input id="date2" name="date2" type="date">
+            <p class="field-error" data-error-for="date2"></p>
+          </div>
+          <div class="form-field">
+            <label for="time2">第2希望時間 <span class="optional">任意</span></label>
+            <select id="time2" name="time2">
+              <option value="">選択してください</option>
+              <option value="9:00〜10:00">9:00〜10:00</option>
+              <option value="10:00〜11:00">10:00〜11:00</option>
+              <option value="11:00〜12:00">11:00〜12:00</option>
+              <option value="13:00〜14:00">13:00〜14:00</option>
+              <option value="14:00〜15:00">14:00〜15:00</option>
+              <option value="15:00〜16:00">15:00〜16:00</option>
+              <option value="16:00〜17:00">16:00〜17:00</option>
+              <option value="17:00〜18:00">17:00〜18:00</option>
+            </select>
+            <p class="field-error" data-error-for="time2"></p>
+          </div>
+          <div class="form-field form-field--full">
+            <label for="message">症状・ご相談内容 <span class="optional">任意</span></label>
+            <textarea id="message" name="message" maxlength="500" rows="6" placeholder="症状やご相談内容をご記入ください（500文字以内）"></textarea>
+            <div class="textarea-meta"><span>個人情報や緊急性の高い内容の入力はお控えください。</span><span id="message-count">0 / 500</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="form-section consent-section" aria-labelledby="consent-title">
+        <h2 id="consent-title"><img src="./assets/images/LEAF_B&amp;G.png" alt="">確認・同意</h2>
+        <label class="consent-check">
+          <input id="consent" name="consent" type="checkbox" required>
+          <span>入力内容と個人情報の取り扱いについて確認し、同意します。 <strong class="required">必須</strong></span>
+        </label>
+        <p class="field-error" data-error-for="consent"></p>
+      </section>
+
+      <div class="form-actions">
+        <button class="reservation-button" type="submit">入力内容を確認する</button>
+        <p class="form-actions__note">※このサンプルでは、実際の送信・予約登録は行いません。</p>
+      </div>
+    </form>
+
+    <section class="confirmation-panel" id="confirmation-panel" hidden aria-live="polite">
+      <h2>入力内容の確認</h2>
+      <div id="confirmation-content"></div>
+      <div class="confirmation-actions">
+        <button class="reservation-button reservation-button--secondary" type="button" id="back-button">入力内容を修正する</button>
+        <button class="reservation-button" type="button" id="complete-button">予約を申し込む</button>
+      </div>
+    </section>
+
+    <section class="completion-panel" id="completion-panel" hidden aria-live="polite">
+      <div class="completion-mark" aria-hidden="true">✓</div>
+      <h2>予約申込を受け付けました</h2>
+      <p>この時点では予約は確定しておりません。医院からの確認連絡をもって予約確定となります。</p>
+      <a class="reservation-button" href="./index.html">トップページへ戻る</a>
+    </section>
+  </main>
+
+  <footer class="reservation-footer">
+    <div class="reservation-footer__inner">
+      <div>
+        <img src="./assets/images/logo.png" alt="佐藤医院 Sato Clinic">
+        <p>地域に根ざした医療</p>
+      </div>
+      <div>
+        <p>〒123-4567 東京都台東区上野0-0-0</p>
+        <p>TEL：00-0000-0000</p>
+        <p class="reservation-footer__dummy">※本サイトの住所・電話番号等は教材用の架空設定です。</p>
+      </div>
+    </div>
+    <div class="reservation-footer__copyright">© 2026 Sato Clinic. All Rights Reserved.</div>
+  </footer>
+</body>
+</html>
+

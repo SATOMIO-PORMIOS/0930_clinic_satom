@@ -2648,6 +2648,31 @@ body {
   margin-top: 18px;
 }
 
+.clinic-contact-list li {
+  display: grid;
+  grid-template-columns: 5em 1em max-content;
+  align-items: baseline;
+  white-space: nowrap;
+}
+
+.clinic-contact-label {
+  text-align: justify;
+  text-align-last: justify;
+  text-justify: inter-character;
+}
+
+.clinic-contact-value {
+  overflow-wrap: anywhere;
+}
+
+.clinic-contact-value--number {
+  display: inline-block;
+  min-width: max-content;
+  white-space: nowrap;
+  overflow-wrap: normal;
+  word-break: keep-all;
+}
+
 .clinic-departments,
 .clinic-contact-list,
 .clinic-location-copy ul {

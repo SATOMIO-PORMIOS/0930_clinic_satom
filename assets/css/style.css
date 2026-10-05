@@ -242,6 +242,10 @@ img {
   background: transparent
 }
 
+.hours-table abbr[title] {
+  text-decoration: none;
+}
+
 .hours-table th,
 .hours-table td {
   text-align: center;
@@ -555,6 +559,26 @@ img {
   height: 50px;
   object-fit: contain;
   flex: 0 0 50px
+}
+
+.section-title__link {
+  display: flex;
+  height: 100%;
+  align-items: center;
+  gap: 10px;
+  color: inherit;
+  text-decoration: none;
+}
+
+.section-title__link:hover h2,
+.section-title__link:focus-visible h2 {
+  text-decoration: underline;
+  text-underline-offset: .16em;
+}
+
+.section-title__link:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: -3px;
 }
 
 .section-title h2 {
@@ -2740,10 +2764,6 @@ body {
   .clinic-contact-list {
     margin-left: 24px;
     margin-right: 24px;
-  }
-
-  .clinic-info-content .hours-table--main {
-    min-width: 700px;
   }
 
   .clinic-departments,

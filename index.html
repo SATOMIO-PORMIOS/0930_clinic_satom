@@ -72,19 +72,19 @@
         <table class="hours-table hours-table--hero">
           <thead>
             <tr>
-              <th>診療時間</th>
-              <th>月</th>
-              <th>火</th>
-              <th>水</th>
-              <th>木</th>
-              <th>金</th>
-              <th>土</th>
-              <th>日</th>
+              <th scope="col">診療時間</th>
+              <th scope="col"><abbr title="Monday">月</abbr></th>
+              <th scope="col"><abbr title="Tuesday">火</abbr></th>
+              <th scope="col"><abbr title="Wednesday">水</abbr></th>
+              <th scope="col"><abbr title="Thursday">木</abbr></th>
+              <th scope="col"><abbr title="Friday">金</abbr></th>
+              <th scope="col"><abbr title="Saturday">土</abbr></th>
+              <th scope="col"><abbr title="Sunday">日</abbr></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th><span class="hours-period">午前</span>　 9:00 ～ 12:00</th>
+              <th scope="row"><span class="hours-period">午前</span>　 9:00 ～ 12:00</th>
               <td>○</td>
               <td>○</td>
               <td>○</td>
@@ -94,7 +94,7 @@
               <td class="closed">休</td>
             </tr>
             <tr>
-              <th><span class="hours-period">午後</span>　13:00 ～ 18:00</th>
+              <th scope="row"><span class="hours-period">午後</span>　13:00 ～ 18:00</th>
               <td>○</td>
               <td>○</td>
               <td>○</td>
@@ -186,8 +186,9 @@
 
   <main>
     <section class="section section--compact" id="news">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./news.html"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>お知らせ</h2>
+      </a>
       </div>
       <div class="content news-list">
         <article class="news-row"><a href="./news.html#influenza">インフルエンザ予防接種について</a><time>2026.10.1</time><a class="mini-button" href="./news.html#influenza">詳しくはこちら</a></article>
@@ -200,8 +201,9 @@
     </section>
 
     <section class="section section--beige" id="greeting">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./about.html"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>ごあいさつ</h2>
+      </a>
       </div>
       <div class="content greeting-grid">
         <img src="./assets/images/greeting.jpg" alt="院長が患者様と話している様子" class="greeting-photo">
@@ -220,8 +222,9 @@
     </section>
 
     <section class="section" id="services">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./medical.html"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>診療内容</h2>
+      </a>
       </div>
       <div class="content">
         <p class="intro">当院では、地域の皆様の健康を支えるため、幅広い内科診療を行っております。日常的な体調管理から、各種の検査や治療に至るまで、どんなお悩みもお気軽にご相談ください。</p>
@@ -278,8 +281,9 @@
     </section>
 
     <section class="section" id="about">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./about.html"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>当院について</h2>
+      </a>
       </div>
       <div class="content about-grid">
         <div class="about-copy about-copy--left">
@@ -303,8 +307,9 @@
     </section>
 
     <section class="section section--beige" id="staff">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./about.html#about-staff-title"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>スタッフ紹介</h2>
+      </a>
       </div>
       <div class="content">
         <p class="intro">地域の皆様に安心してご来院いただけるよう、スタッフ一同、誠心誠意対応いたします。それぞれの専門性と温かさを活かし、皆様の健康を支えるパートナーとしてお力になれるよう努めてまいります。</p>
@@ -346,8 +351,9 @@
     </section>
 
     <section class="section" id="access">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./clinic-info.html#clinic-location"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>アクセス</h2>
+      </a>
       </div>
       <div class="content access-grid">
         <a href="https://www.google.com/maps/search/?api=1&amp;query=%E6%9D%B1%E4%BA%AC%E9%83%BD%E5%8F%B0%E6%9D%B1%E5%8C%BA%E6%9D%B1%E4%B8%8A%E9%87%8E3-35-9" target="_blank" rel="noopener noreferrer" aria-label="Google マップで所在地を見る" title="クリックでGoogleMapを表示">
@@ -365,27 +371,28 @@
     </section>
 
     <section class="section section--compact" id="hours">
-      <div class="section-title"><img src="./assets/images/LEAF_G.png" alt="">
+      <div class="section-title"><a class="section-title__link" href="./clinic-info.html#clinic-hours"><img src="./assets/images/LEAF_G.png" alt="">
         <h2>診療時間・診療科目</h2>
+      </a>
       </div>
       <div class="content hours-content">
         <h3 class="hours-subheading"><img src="./assets/images/LEAF_B&amp;G.png" alt="">診療時間</h3>
         <table class="hours-table hours-table--main">
           <thead>
             <tr>
-              <th>診療時間</th>
-              <th>月</th>
-              <th>火</th>
-              <th>水</th>
-              <th>木</th>
-              <th>金</th>
-              <th>土</th>
-              <th>日</th>
+              <th scope="col">診療時間</th>
+              <th scope="col"><abbr title="Monday">月</abbr></th>
+              <th scope="col"><abbr title="Tuesday">火</abbr></th>
+              <th scope="col"><abbr title="Wednesday">水</abbr></th>
+              <th scope="col"><abbr title="Thursday">木</abbr></th>
+              <th scope="col"><abbr title="Friday">金</abbr></th>
+              <th scope="col"><abbr title="Saturday">土</abbr></th>
+              <th scope="col"><abbr title="Sunday">日</abbr></th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th><span class="hours-period">午前</span>　 9:00 ～ 12:00</th>
+              <th scope="row"><span class="hours-period">午前</span>　 9:00 ～ 12:00</th>
               <td>●</td>
               <td>●</td>
               <td>●</td>
@@ -395,7 +402,7 @@
               <td class="closed">休</td>
             </tr>
             <tr>
-              <th><span class="hours-period">午後</span>　13:00 ～ 18:00</th>
+              <th scope="row"><span class="hours-period">午後</span>　13:00 ～ 18:00</th>
               <td>●</td>
               <td>●</td>
               <td>●</td>

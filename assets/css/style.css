@@ -2610,7 +2610,100 @@ body {
   margin-top: 0;
 }
 
+.clinic-info-content {
+  padding-top: 58px;
+}
+
+.clinic-info-section {
+  margin: 0 0 42px;
+}
+
+.clinic-info-section:last-child {
+  margin-bottom: 0;
+}
+
+.clinic-info-section .hours-subheading {
+  margin: 0 0 24px;
+}
+
+.clinic-hours-table-wrap {
+  overflow-x: auto;
+}
+
+.clinic-info-content .hours-table--main {
+  margin: 0;
+}
+
+.clinic-info-content .hours-note {
+  margin-top: 18px;
+}
+
+.clinic-departments,
+.clinic-contact-list,
+.clinic-location-copy ul {
+  margin: 0;
+  padding-left: 1.5em;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.clinic-info-note {
+  margin: 18px 0 0;
+  font-size: 16px;
+}
+
+.clinic-location-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 560px) 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+.clinic-map {
+  width: 100%;
+  height: 360px;
+  object-fit: cover;
+}
+
+.clinic-location-copy p {
+  margin: 20px 0 0;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
 @media (max-width:768px) {
+  .clinic-info-content {
+    padding-top: 44px;
+  }
+
+  .clinic-info-section {
+    margin-bottom: 36px;
+  }
+
+  .clinic-info-section .hours-subheading {
+    margin-bottom: 20px;
+  }
+
+  .clinic-info-content .hours-table--main {
+    min-width: 700px;
+  }
+
+  .clinic-departments,
+  .clinic-contact-list,
+  .clinic-location-copy ul {
+    font-size: 16px;
+  }
+
+  .clinic-location-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+
+  .clinic-map {
+    height: auto;
+    aspect-ratio: 4 / 3;
+  }
+
   .about-content {
     padding-top: 44px;
   }
@@ -2661,6 +2754,33 @@ body {
 }
 
 @media (max-width:480px) {
+  .clinic-info-content {
+    padding-top: 34px;
+  }
+
+  .clinic-info-section {
+    margin-bottom: 30px;
+  }
+
+  .clinic-info-section .hours-subheading {
+    margin-bottom: 18px;
+  }
+
+  .clinic-location-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .clinic-map {
+    aspect-ratio: 16 / 10;
+  }
+
+  .clinic-departments,
+  .clinic-contact-list,
+  .clinic-location-copy ul {
+    font-size: 16px;
+  }
+
   .about-content {
     padding-top: 34px;
   }
